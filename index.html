@@ -11,6 +11,11 @@
 <body class="container mt-4">
 
     <div class="container" id="app">
+        <div class="form-inline mr-auto">
+            <label class="font-weight-bold mr-2" for="formMax">max</label>
+            <input type="text" id="formMax" class="form-control w-25" v-model="maximum">
+        </div>
+        <input type="range" class="custom-range w-100" min="0" max="200" v-model="maximum">
         <div class="row d-flex mb-3 align-items-center"
              v-for="item in products"
              v-if="item.price <= Number(maximum)">
