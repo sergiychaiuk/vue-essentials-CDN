@@ -35,7 +35,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
-        let data = {
+        /*let data = {
             maximum: 99,
             products : [
                 {
@@ -61,11 +61,21 @@
                     "image": "https://hplussport.com/wp-content/uploads/2016/12/unisex-thermal-vest_LYNDA_29944.jpg"
                 }
             ]
-        }
+        }*/
 
         let app = new Vue({
             el: '#app',
-            data: data
+            data: {
+                maximum: 99,
+                products: null
+            },
+            mounted: function () {
+                fetch('https://hplussport.com/api/products/order/price')
+                .then(response => response.json())
+                .then(data => {
+                    this.products = data;
+                })
+            }
         });
     </script>
 </body>
