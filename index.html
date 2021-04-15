@@ -12,6 +12,8 @@
 
     <div id="app">
         <h2>{{ name }}</h2>
+        <p>{{ description }}</p>
+        <div class="h3">${{ price }}</div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -19,11 +21,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
-        var app = new Vue({
+        let data = {
+            "name": "Bamboo Thermal Ski Coat",
+            "description": "You'll be the most environmentally conscious skier on the slopes - and the most stylish - wearing our fitted bamboo thermal ski coat, made from organic bamboo with recycled plastic down filling.",
+            "image": "https://hplussport.com/wp-content/uploads/2016/12/ski-coat_LYNDA_29940.jpg",
+            "price": 99
+        };
+
+        let app = new Vue({
             el: '#app',
-            data: {
-                name: 'Serhii'
-            }
+            data: data
         });
     </script>
 </body>
