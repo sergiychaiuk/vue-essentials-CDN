@@ -7,15 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue app</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body class="container mt-4">
 
 <div class="container" id="app">
-    <nav class="navbar navbar-light bg-light fixed-top"
-         v-if="cart.length > 0">
-        <div class="navnar-text ml-auto">
-            <b>cart:</b>
-            <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+    <nav class="navbar navbar-light fixed-top">
+        <div class="navnar-text ml-auto d-flex">
+            <button class="btn btn-sm btn-outline-success"
+                @click="sliderStatus = !sliderStatus">
+                <i class="fas fa-dollar-sign"></i></button>
+            <div class="ml-2" v-if="cart.length > 0">
+                <b>cart:</b>
+                <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+            </div>
         </div>
     </nav>
 
@@ -82,7 +87,7 @@
         el: '#app',
         data: {
             inputWidth: 60,
-            sliderStatus: true,
+            sliderStatus: false,
             labelArr: ['font-weight-bold', 'mr-2'],
             maximum: 99,
             products: null,
