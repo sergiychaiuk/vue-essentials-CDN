@@ -53,11 +53,13 @@
     </transition>
 
     <transition-group name="fade" tag="div"
-                      enter-active-class="animate__animated animate__fadeInRight"
-                      leave-active-class="animate__animated animate__fadeOutRight">
-        <div class="row d-flex mb-3 align-items-center"
+                        @beforeEnter="beforeEnter"
+                        @enter="enter"
+                        @leave="leave">
+        <div class="row d-none mb-3 align-items-center"
              v-for="(item, index) in products" :key="item.id"
-             v-if="item.price <= Number(maximum)">
+             v-if="item.price <= Number(maximum)"
+            :data-index="index">
             <div class="col-1 m-auto">
                 <button class="btn btn-info"
                         v-on:click="addItem(item)">+</button>
@@ -124,6 +126,21 @@
             }
         },
         methods: {
+            beforeEnter: function(el) {
+                el.className = 'd-none'
+            },
+            enter: function(el) {
+                let delay = el.dataset.index * 100;
+                setTimeout(function () {
+                    el.className = 'row d-flex mb-3 align-items-center animate__animated animate__fadeInRight'
+                }, delay)
+            },
+            leave: function(el) {
+                let delay = el.dataset.index * 100;
+                setTimeout(function () {
+                    el.className = 'row d-flex mb-3 align-items-center animate__animated animate__fadeOutRight'
+                }, delay)
+            },
             addItem: function (product) {
                 this.cart.push(product);
             }
