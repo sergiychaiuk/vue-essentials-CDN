@@ -8,6 +8,14 @@
     <title>Vue app</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            transition: all 1s ease-in-out;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body class="container mt-4">
 
@@ -25,12 +33,17 @@
     </nav>
 
     <h1>My Shop</h1>
-    <div class="align-item-center" :class="sliderState">
-        <label :class="labelArr" for="formMax">max</label>
-        <input type="text" id="formMax" class="form-control mx-2"
-               :style="{'width': inputWidth + 'px', textAlign: 'center'}" v-model="maximum">
-        <input type="range" class="custom-range w-100" min="0" max="200" v-model="maximum">
-    </div>
+
+    <transition name="fade">
+        <div v-if="sliderStatus">
+            <div class="align-item-center" :class="sliderState">
+                <label :class="labelArr" for="formMax">max</label>
+                <input type="text" id="formMax" class="form-control mx-2"
+                       :style="{'width': inputWidth + 'px', textAlign: 'center'}" v-model="maximum">
+                <input type="range" class="custom-range w-100" min="0" max="200" v-model="maximum">
+            </div>
+        </div>
+    </transition>
 
     <div class="row d-flex mb-3 align-items-center"
          v-for="item in products"
